@@ -8,17 +8,27 @@ import (
 )
 
 func main() {
-	filename := flag.String("c", "test.txt", "Byte count")
-	// f := flag.Arg(0)
+	count_bytes := flag.Bool("c", false, "Byte count")
 	flag.Parse()
-	f := flag.Args()
+	files := flag.Args()
 
-	fmt.Println(f)
+	fmt.Println(files)
 
-	data, err := os.ReadFile(*filename)
+	var byte_count int64
+	for _, file := range files {
+		if *count_bytes {
+			byte_count = BytesInAFile(file)
+		}
+		fmt.Printf("%d %s", byte_count, file)
+	}
+}
+
+// Returns number of bytes
+func BytesInAFile(filename string) int64 {
+	data, err := os.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
 	number_of_bytes := len(data)
-	fmt.Printf("%d %s", number_of_bytes, *filename)
+	return int64(number_of_bytes)
 }
