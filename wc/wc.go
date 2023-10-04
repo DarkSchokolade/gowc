@@ -38,8 +38,9 @@ func LinesInAFile(filepath string) int {
 	return total_lines
 }
 
-// Returns number of words in a file.
-func WordCountInAFile(filepath string) int {
+// Counts number of tokens in a file.
+// Tokenization is done based on bufio.SplitFunc type
+func Count(filepath string, split bufio.SplitFunc) int {
 	count := 0
 	f, err := os.Open(filepath)
 	if err != nil {
@@ -49,7 +50,7 @@ func WordCountInAFile(filepath string) int {
 
 	scanner := bufio.NewScanner(f)
 	// Set the split function for the scanning operation
-	scanner.Split(bufio.ScanWords)
+	scanner.Split(split)
 	for scanner.Scan() {
 		count++
 	}
