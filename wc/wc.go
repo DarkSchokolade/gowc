@@ -65,6 +65,7 @@ type ScanResult struct {
 
 func CountAll(scanner bufio.Scanner) ScanResult {
 	lineCount, wordCount, byteCount, charCount := 0, 0, 0, 0
+	scanner.Split(bufio.ScanLines)
 	for scanner.Scan() {
 		line := scanner.Text()
 		lineCount++
@@ -76,6 +77,7 @@ func CountAll(scanner bufio.Scanner) ScanResult {
 		words := strings.Split(line, " ")
 		wordCount += len(words)
 	}
+
 	return ScanResult{
 		LineCount: lineCount,
 		WordCount: wordCount,

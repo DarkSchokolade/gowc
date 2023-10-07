@@ -76,40 +76,6 @@ func ScanFile(filepath string) *bufio.Scanner {
 	return scanner
 }
 
-func Analyze(scanner bufio.Scanner) {
-	if countLines {
-		line_count := wc.Count(scanner, bufio.ScanLines)
-		fmt.Printf("%d\t", line_count)
-	}
-	if countWords {
-		word_count := wc.Count(scanner, bufio.ScanWords)
-		fmt.Printf("%d\t", word_count)
-	}
-	if countBytes {
-		// byte_count := wc.BytesInAFile(file)
-		byte_count := wc.Count(scanner, bufio.ScanBytes)
-		fmt.Printf("%d\t", byte_count)
-	}
-	if countChars {
-		char_count := wc.Count(scanner, bufio.ScanRunes)
-		fmt.Printf("%d\t", char_count)
-	}
-	// if flag.NFlag() == 0 {
-	// 	// scanner := ScanFile(file)
-	// 	line_count := wc.LinesInAFile(file)
-	// 	fmt.Printf("%d\t", line_count)
-	// 	word_count := wc.Count(*scanner, bufio.ScanWords)
-	// 	fmt.Printf("%d\t", word_count)
-	// 	byte_count := wc.BytesInAFile(file)
-	// 	fmt.Printf("%d\t", byte_count)
-	// }
-	// if len(files) == 0 {
-	// 	sc := bufio.NewScanner(os.Stdin)
-	// 	// call the respective flag method
-	// }
-	// fmt.Println(file)
-}
-
 // func main() {
 // 	// sc := bufio.NewScanner(os.Stdin)
 // 	// for sc.Scan() {
